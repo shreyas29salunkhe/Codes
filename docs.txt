@@ -1,0 +1,588 @@
+**************************************************JAVA 11 Essentials**********************************************************
+-Java compiler (javac.exe): A Java compiler is a program that converts source files into the respective byte code.
+	The byte code is platform-independent. 
+-Source code: Program written in Java language
+
+-Byte code: A .class file is generated after the Java code is compiled
+
+-ClassLoader: Loads all the class files needed for execution
+
+-Byte code verifier: Checks code for fragments for  illegal code
+
+-Interpreter: Converts byte code instruction to machine code
+
+-Compiler: Compiles reusable byte code instructions to machine code
+
+-Runtime: The overall execution of the program is assisted by Runtime.
+
+//Features of java
+-Simple
+-Architecture Neutral
+-OOP
+-Secure
+-Multi-threaded
+-Robust
+
+-Implicit conversion happens when a value of smaller data type needs to be used as a value of larger compatible data type. 
+- To use var we must need to initialize.
+
+-During object creation, the instance variables are automatically assigned default values (for example: 0 for integer, 0.0 for double, null for String etc.)
+	based on their respective datatypes.
+-Local variables declared inside methods have to be initialized with relevant values before they can be used.
+
+//Control Structures
+	1.Decision/selection
+		if-else,switch
+	2.Iteration
+		for,while,do-while,for-each
+
+//Pkg
+-There are 4 access modifiers in Java  - 
+				public-accessible everywhere,
+				private- accessible only within its class,
+				default-accessible inside same pkg
+				protected-accessible inside same pkg and to subclasses inside diff pkg
+
+//Enumerations
+-Enumerations are group of named constants. All enums implicitly extend the java.lang.Enum class. 
+	The enum fields are implicitly static and final, and hence are constant during compile time. 
+	But they are instances of their enum type, constructed when the enum type is referenced for the first time.
+		
+//LocalDate
+-LocalDate is an immutable class (present in java.time package) that represents
+	a date with default format "yyyy-MM-dd" (year-month-day). 
+
+//LocalTime
+LocalTime is a class that represents time with a default format of "hour-minute-second" (hh-mm-ss.zzz). It is immutable by nature.
+//LocalDateTime
+-LocalDateTime is an immutable class that represents a date-time, with the default format as 
+	"yyyy-MM-dd-HH-mm-ss.zzz" year-month-day-hour-minute-second. 
+	
+//Static 
+-keyword is used to make a member belong to a class, and not to any of its individual objects.
+-Static methods are class level methods. They can be used without any instance of the class, and are invoked using the class name.	
+	They can be called using a reference of the class as well.
+- Only one copy of the member is maintained across all the instances. We can have static variables, methods, and blocks.
+-Static block cannot return a value.
+-Static blocks get executed before constructors.
+-Static block is used to initialize static variables only; it gives compilation error if we try to initialize non-static variables.
+-Keywords like this and super cannot be used inside the static block.
+-static methods can be overloaded
+
+
+
+
+
+
+*************************************************** JAVA 11 beyond basics******************************************
+
+//Lambda Expression
+-Lambda Expression is a type of "anonymous" method, which is not bound to any identifier. And so, they do not belong to any class/type.
+-( arguments ) -> { body }
+- (->)	Lambda Operator
+- Zero Parameter Lambda Expression
+- One Parameter Lambda Expression
+- Multiple Parameter Lambda Expression
+- A functional interface is an interface that contains only one abstract method.
+	-User-Defined Functional Interface
+			/*//User Defined Lambda Expression
+				@FunctionalInterface
+				interface Operation{
+					public double calculations(double num1,double num2); 
+		}*/
+	-Built-In Functional Interface
+		1.Function – It represents a function that takes a single input parameter and returns a single value/object.
+			Function<Long, Long> addNum = (value) -> value + 10;
+		2.Predicate – It represents a function that takes a single value/object as a parameter, and returns true or false.
+			Predicate<Integer> checkAge = (age) -> age > 18;
+		3.Supplier – It represents a function that produces a value/an object without taking any input parameter.
+			Supplier<Integer> generateRandom = ()-> new Integer((int) (Math.random() * 100));
+		4.Consumer – It represents a function that consumes or processes a value/an object without returning anything.
+			Consumer<String> printValue = (name)-> System.out.println(name);
+	Method Reference is an alternative to Lambda Expression. It is effective at situations where
+			Lambda Expression is calling an existing method.
+		ClassName::methodName                 // The "::" operator is used for Method Referencing
+
+
+//Stream
+-A Stream represents a sequence of elements from a source and supports various data processing operations.
+-Streams are said to be lazy because until the terminal operation is invoked, none of the intermediate operations is executed.
+
+//Properties
+-	Properties file is a text file used to store any kind of textual information in the form of key-value pairs.
+	-storing configuration related data
+
+//Logging
+Logging is the process of tracking the execution of the program where,
+	-Any event that is to the interest of the programmer or administrator can be logged. 
+	-Relevant messages can be recorded in the event of exceptions and errors.
+	Components:-
+				Appender – Specifies where the logging output should be stored. 
+							It can be the console, an external file, any database, etc.
+				Layout– Specifies in what format should the information be logged. 
+						It can be a simple layout which logs the level followed by the message, or we 
+						can specify a pattern for it to follow, etc.
+				Logger – Accepts all the information to be logged and redirects it to an appropriate Appender.
+				
+//Modular Programming
+-Modular programming breaks down code into independent functions/methods to decrease complexity, 
+	improve reusability, improve collaboration, improve maintainability, 
+-Higher Level of Encapsulation
+	-Public to Every Module
+	-Public Only to Friend Module (Export-Require Relationship)
+	-Public Only within the Module (Concealed Packages)
+	-Protected
+	-Package-Level
+	-Private
+-Detection of Missing Dependencies During Compile-Time
+-Breaking Down The Monolithic Java Platform API
+
+//Apache Maven
+-Apache Maven is an open-source software project management tool that helps the developer in the
+ creation, building, and management of Java-based projects.
+ -dependency management
+ 
+ //repository
+-It is the source where artifacts required for building the projects are located 
+-It is the target where artifacts generated out of build process are deployed 
+-uses pom.xml
+3 types
+	-Local: refers to the location/folder in the developer's machine where the copy of dependencies get downloaded and stored. 
+	-Remote: this repository is usually a location that is remote to the developer's machine.
+	-Central:  is the public website/repository given by Maven. It has all the most commonly used libraries for project builds.
+
+
+//POM
+-Project Object Model
+-XML configuration
+-contains the list of all the dependencies needed for the application
+	Project Information
+	Dependencies
+	Build Plugin
+	Build Profile
+	
+//JDBC
+- The data is transferred between source and destination in a serialized manner.
+	To transfer the data efficiently in a serial manner, the mechanism used is called Serialization.
+- If we take the database as the destination, all the data will be transferred in the form of a byte stream in the medium between the source and database.
+	The process of converting back from byte stream to data/object is called as Deserialization.
+- Application->API->DriverManager->Java Obj>DB
+- Load driver->Create connection->Create Stmt->Execute->Result
+
+//Optional
+-null checks can also be avoided with the help of Optional class
+-empty(): Using this method you can create an empty optional object
+	Optional<Employee> employee = Optional.empty();
+
+-of(): Using this method you can create an optional object with non-null value:
+	Employee employee = new Employee(101, "Jack");
+	Optional<Employee> optional = Optional.of(employee);
+	
+-ofNullable(): Using this method you can create create an optional object which contain null as well as non-null values
+	Employee employee = new Employee(101, "Jack");
+	Optional<Employee> optional = Optional.ofNullable(employee);
+	
+-isPresent(): This method checks whether Optional object contains non-null value or not.
+	Employee employee = new Employee(101, "Jack");
+	Optional<Employee> optional = Optional.of(employee);
+	optional.isPresent();
+
+-ifPresent(Consumer consumer): This method executes the consumer only if a value is present in the Optional object.
+	EmployeeDAO employeeDAO = new EmployeeDAO();
+	Optional<Employee> optional = EmployeeDAO.getEmployee(101);
+	optional.ifPresent(employee -> {
+	  System.out.println(employee.getEmployeeId());
+	  System.out.println(employee.getEmployeeName());
+	});
+	
+-get(): This method retrieves the value present in Optional object.
+	Employee employee = new Employee(101, "Jack");
+	Optional<Employee> optional = Optional.of(employee);
+	if(optional.isPresent())
+		 Employee emp = optional.get();
+		 
+-orElse(T otherValue): This method returns the value if present in the Optional object, else it will return otherValue.
+	EmployeeDAO employeeDAO = new EmployeeDAO();
+	Optional<Employee> optional = employeeDAO.getEmployee(103);
+	Employee employee = optional.orElse(new Employee(0, null));
+
+-orElseThrow(Supplier exceptionSupplier): This method returns the value if present in the Optional object, else throw an exception created by the exceptionSupplier.
+	EmployeeDAO employeeDAO = new EmployeeDAO();
+	Optional<Employee> optional = employeeDAO.getEmployee(103);
+	try {
+		employee = optional.orElseThrow(EmployeeNotFoundException::new);
+		System.out.println(employee.getEmployeeId());
+		System.out.println(employee.getEmployeeName());
+	} catch(EmployeeNotFoundException exception) {
+		System.out.println("Employee is not present in the DB");
+}
+
+*********************************************************Service Layer using Spring***********************************************
+-The service layer of an enterprise application is the layer in which the business logic is implemented. 
+-It is the heart of enterprise applications as it contains the business processes of the application.
+-It interacts with the presentation layer and the persistence layer.
+
+UserInterface – The customer will interact with the application using a web-based user interface. This interface will interact with the CustomerLoginController class. In this course, for simplicity, the web interface will be replaced with this class.
+
+CustomerLoginController – This class will interact with the user interface and the CustomerLoginServiceImpl class of service layer.
+
+CustomerLoginServiceImpl – The business logic will be implemented in this class. It will interact with the CustomerLoginController of the presentation layer and CustomerLoginRepositoryImpl class of the persistence layer.
+
+CustomerLoginRepositoryImpl – This class is a persistence layer class and will interact with the database and CustomerLoginServiceImpl class of service layer.
+
+CustomerLoginDTO – This is a DTO (Data Transfer Object) class which is used to transfer data across different layers. 
+
+//Spring features
+
+	1.Light Weight
+		-Spring JARs are relatively small
+		-A basic Spring framework would be lesser than 10MB
+		-Can be deployed in Tomcat and they don't require heavyweight application servers
+		
+	2.Non-Invasive
+		-Applications are developed using POJOs
+		-No need to extend/implement any pre-defined classes
+	
+	3.Loosely Coupled      
+		Spring features like Dependency Injection and Aspect Oriented Programming help in loosely coupled
+
+	4.Inversion of Control (IoC)
+		IoC allows creation of objects that are managed by the Spring Container and their dependencies are resolved automatically
+
+	5.Spring Container
+
+		Spring Container takes care of object creation, initialization and managing object dependencies
+
+	6.AspectOrientedProgramming     
+		Promotes Separation of supporting functions (concerns) such as logging, transaction and security from 
+			the core business logic of the applications
+			
+//Spring modules
+Spring Core Container: This module provides the Spring IoC container and Dependency Injection features.
+
+Spring Data Access/Integration: This module provide support to access database in Spring applications.
+
+Spring Web: This modules provide support to create web applications.
+
+Spring AOP: This module supports aspect oriented programming implementation.
+
+Spring Messaging: This module provides support for integrating Spring applications with messaging systems.
+
+Spring Test: This module supports testing of Spring applications using JUnit or TestNG.
+
+//Spring Core container
+Core: This is the key module of Spring Framework which provides fundamental support on which all other modules of the framework are dependent.
+
+Bean: This module provide basic Spring IoC container called BeanFactory. 
+
+Context: This module provides Spring IoC container called ApplicationContext which extends the features of BeanFactory container and provides additional features for enterprise application development. 
+
+Spring Expression Language (SpEL): This module is used for querying/manipulating object value.
+
+//Spring IOC container
+-Spring framework provides a container for dependency injection.This container is called as Spring IoC container.
+-It creates, initializes and injects the required objects.
+-These objects whose life cycles are managed by Spring are called as Spring beans or beans.
+-The Spring container needs information about objects of which class to create and how to wire them together called as configuration metadata..
+-It can be provided in following ways:
+	XML configuration
+	Java-based configuration
+	Java Annotation-based configuration
+
+The Spring IoC container is represented by the following interfaces:
+
+-BeanFactory interface: It represents container which provides basic functionalities. It instantiates bean whenever 
+	asked for by the client application. Using its getBean() method,  you can get instances of beans. It instantiates bean objects only when getBean() method is called.
+-ApplicationContext interface: It extends BeanFactory interface and provides additional functionalities to support enterprise
+	application development. It instantiates all beans when container is loaded. There are many implementations of this interface. Some commonly used implementation classes are as follows:
+-ClassPathXmlApplicationContext : It is used to process XML-based configuration metadata.
+-AnnotationConfigApplicationContext : It is used to process Java‐based configuration metadata.
+
+//Autowiring
+-If one bean class is dependent on another bean class, then the bean dependencies need to be explicitly 
+	defined in your configuration class but you can let the Spring IoC container to inject the 
+	dependencies into dependent bean classes without defining in your configuration class. This is called as autowiring.
+-To do autowiring, you can use @Autowired annotation.
+-This annotation allows Spring IoC container to resolve and inject dependencies into your bean.
+-It can be applied to attributes, constructors, setter methods of a bean class. 
+
+
+//@SpringBootApplication annotation, is a combination of @Configuration, @EnableAutoConfiguration and @ComponentScan annotatations.
+//Spring boot starter
+*spring-boot-starter - This is the core starter which includes support for auto-configuration, logging and YAML.
+*spring-boot-starter-aop - This starter is used for aspect-oriented programming with Spring AOP and AspectJ.
+*spring-boot-starter-data-jdbc - This starter is used for Spring Data JDBC.
+*spring-boot-starter-data-jpa - This starter is used for Spring Data JPA with Hibernate.
+*spring-boot-starter-web - This starter is used for building web application using Spring MVC  and Spring REST. It also provides Tomcat as the default embedded container.
+*spring-boot-starter-test - This starter provides support for testing Spring Boot applications using libraries such as JUnit, Hamcrest and Mockito.
+*spring-boot-starter-log4j2 - This starter provides support for using Log4j2 for logging. It is an alternative to spring-boot-starter-logging.
+*spring-boot-starter-actuator - This starter provides support for using Spring Boot Actuator.
+
+
+//Logging
+-Spring Boot uses Apache Commons Logging for logging.
+-It provides default configurations for using Java Util Logging, Log4j2, and Logback as logging implementation.
+-If Spring Boot starters are used then Logback is used for logging by default.
+-spring-boot-starter-logging
+-spring-boot-starter-log4j2
+-logging.level property defines the logging level.
+
+//AOP-Access oriented programming
+-You know that enterprise applications are developed using multiple layers. While the functionalities
+	 of each layer is different, there are few functionalities which are common to all layers such as logging,
+	 security, transaction management, etc.  These functionalities are called as cross-cutting concerns. 
+-It provides a way to separate the code of cross-cutting concern from business logic code 
+	and define them in one place so that it can be reused in all the layers of the application. 
+-It ensures that cross cutting concerns are kept separate from the core business logic.
+-It allows to create a more loosely coupled application wherein you can change the
+ cross cutting concerns code without affecting the business code.
+
+-*Aspect* is a class that implements the cross-cutting concerns. To declare a class as an aspect it should
+	be annotated with the @Aspect annotation. It should be applied to the class which is annotated with @Component
+	annotation or with derivatives of it.
+
+-*Join point* is a specific point in the application such as method execution, exception handling, 
+	changing object variable values, etc during its execution. In Spring AOP a join point is always the execution of a method.
+
+-*Advice* is a method of the aspect class that provides the implementation for the cross-cutting concern. 
+	It gets executed at the selected join point(s). 
+-*Pointcut* represents an expression used to identify join points. It evaluates to the method name before or after which the advice needs
+ to be executed.
+
+Types of advice:
+1.Before:-The advice gets executed before the join-point.
+2.After Returning:-    	The advice gets executed after the execution of the join-point finishes.
+3.After Throwing:-	The advice gets executed if any exception is thrown from the join-point.
+4.After (Finally):-	The advice gets executed after the execution of the join-point whether it throws an exception or not.
+5.Around:-	The advice gets executed around the join-point, which means that it is invoked before the join-point and after the execution of the join-point.
+
+//Testing
+@SpringBootTest -This annotation loads ApplicationContext using SpringApplication so that all the Spring Boot
+	features will be available to the tests.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Primary key generation strategy
+JPA provides different strategies using which primary key values can be generated automatically. 
+	The different strategies provided by JPA are as follows:
+		1.IDENTITY strategy(not supported by oracle)
+		2.TABLE strategy
+		3.SEQUENCE strategy(not supported by sql)
+		4.AUTO strategy
+
+1.IDENTITY strategy:
+	-auto-increment by 1
+	-@GeneratedValue(strategy=GenerationType.IDENTITY)
+	-If rows are already present is customer table then maximum value present in customer_id 
+		column will be used for generating value of customerId. For example, if maximum value of customer_id column is 5, 
+		then the generated primary key value will be 6.
+		
+2.TABLE strategy(using default):
+	-hibernate_sequences database table is used to generate primary key values
+	-@GeneratedValue(strategy=GenerationType.TABLE)
+	-next_val column by incrementing it by 1
+	
+	*Manual way of generation*
+	-@TableGenerator(
+            name="pkgen", 
+            table="id_gen", 
+            pkColumnName="gen_key", 
+            valueColumnName="gen_value",
+            pkColumnValue="cust_id",
+            allocationSize=1)
+	-@GeneratedValue(generator="pkgen",strategy=GenerationType.TABLE)
+	-name : It specifies the name of the generator. This name is used to access the generator inside the entity class.
+	-table : It specifies the name of the table which has to be used for generating primary key values.
+		In our case the table is id_gen.
+	-pkColumnName : It is the name of the primary key column which contains generator names used for generating primary key value.
+		In our case pkColumnName is gen_key.
+	-valueColumnName : It is the name of the column which contains the last primary key value generated.
+		In our case valueColumnName is gen_value.
+	-pkColumnValue : In table, many generators are may be present. This attribute specifies which generator has to be used for
+		generating primary key value among a set of generators in the table. In our case pkColumnValue is cust_id.
+	-allocationSize : It specifies the amount to increment by when allocating id numbers from the generator.
+	
+3.SEQUENCE strategy:
+	-the primary key value is generated from a database sequence
+	-@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	
+4.AUTO strategy:
+	-the persistence provider automatically selects an appropriate strategy for generating primary key values
+		depending on the database used
+	-@GeneratedValue(strategy=GenerationType.AUTO)
+
+	
+**************************************************************Persistance layer using spring************************************************************************
+-persistence layer interacts with relational database and the service layer. It gets data from service layer, performs operations
+	on database and sends back results to service layer. The code to interact with database is implemented in this layer.
+	-------------------------------------------------------------------------------------
+	| User layer->Service layer->Repository layer(Persistance layer)->Database layer.	|
+	-------------------------------------------------------------------------------------
+
+//Ways to develop persistence layer
+	1.ORM(Object Relational Mapping)
+	2.Spring data
+	3.Spring JDBC
+
+//ORM
+-It resolves object-relational impedance mismatch by mapping
+-Java classes to tables in the database
+-Instance variables to columns of a table
+-Objects to rows in the table
+-It helps the developer to get rid of SQL queries so that they can concentrate on the business logic which leads to
+	faster development of the application.
+-It is database independent. All database vendors provide support for ORM. Hence, the application becomes portable without
+	worrying about the underlying database.
+-Object Relational Mapping (ORM) is a technique or design pattern, which maps an object model with the relational model.
+-To use ORM in Java applications, Java Persistence API (JPA) specification is used.
+-ORM resolves the paradigm mismatch.
+-ORM helps the developer to get rid of messy SQL.
+-ORM is database independent.
+
+//Java Persistence API (JPA)
+-API to map classes with tables
+-API for performing CRUD operations
+-Java Persistence Query Language (JPQL), a querying language for fetching data from database
+-Criteria API which uses object graph to fetch data from database.
+
+//Persistence Context and EntityManager
+-The group of objects of entity classes managed by an EntityManager is called as persistence context. Every instance of
+ EntityManager has its own persistence context. At any time within the same EntityManager, there should exist only one entity
+ object with the same primary key value.
+-states of an entity object during its life cycle are as follows:
+	1.New/Transient State : A newly created entity object which has no persistence context associated with it and 
+		having no row associated with it in a table in database is said to be in new or transient state.
+	2.Managed/Persistent State : An entity object which has a persistence context and an identifier value associated with
+		it is said to be in managed or persistent state. It may or may not have a row associated with it in a table.
+	3.Removed State : An entity object which has a row associated with it in a table and associated with a persistence context,
+		but marked for deletion from the database is said to be in removed state.
+	4.Detached State : An entity object which is no longer associated with a persistence context with which it was previously
+		associated with it is said to be in detached state. This usually happens when session gets closed or the object was evicted from the persistence context.
+-When multiple clients call the application, each call creates a unique thread.
+-Persistence Context is specifically designed so as to create unique EntityManager for every thread whereas Autowired creates 
+	the same Entity Manager for all the threads. This can become a design flaw as multiple clients may access the same entity.		
+		
+//methods of the EntityManager
+-void persist(Object entity) - It makes a new entity object managed. When transaction is committed, a new row will be inserted 
+	in the database.
+-find(Class entityClass, Object primaryKey) - It searches the database table based on the primaryKey and returns the row as an object of entity class. It returns null if no row is present in the database.
+	It returns the entity object in the managed state. 
+-void remove(Object entity) - It changes the state of entity object from managed to removed and object gets deleted from 
+	the database when transaction is committed.
+-void detach(Object entity) - It detaches the given entity from the persistence context associated with it
+	and changes its state to detached.
+	
+//@Transactional annotation
+-for maintaining database integrity and consistency. If transaction management is not done properly, database may get 
+	corrupted and left in an inconsistent state.
+-has default values
+-The default values of its different attributes are as follows:
+	-isolation = DEFAULT
+	-propagation = REQUIRED
+	-timeout = TIMEOUT_DEFAULT
+	-readOnly =false
+	-rollbackFor = RuntimeException or its subclasses
+	-noRollbackFor = Exception or its subclasses
+-can use this annotation with repository or service classes but it is a good practice to use it with service classes.
+	This is because service class may call methods of different repository classes to perform database operations and if any of these 
+	methods throw exception, you may end up with inconsistent database state.
+	
+-Advantages of Spring ORM
+	1. Easy testing 
+	2. Common data access exceptions
+	3. Automatic resource management
+	4. Easy transaction management
+
+//Java Persistence Query Language (JPQL)
+-queries are defined using entity classes and its attributes instead of tables and columns. 
+-List getResultList() : This method executes select queries and returns a List of results. It throws IllegalStateException if
+	called for update and delete queries.
+-Integer executeUpdate() : This method executes update and delete queries. It returns the number of rows updated or deleted.
+	It throws IllegalStateException if called for select queries.
+-Object getSingleResult() : This method executes select query which returns a single result. If no result available it throws
+	NoResultException. It throws NonUniqueResultException if query returns more than one results and IllegalStateException if 
+	called for update and delete queries.
+	
+//The WHERE clause
+	1. Named Parameters
+	-The input parameters which are prefixed with a colon (:) are called as named parameters. For example, in following JPQL query: 
+		customerId is a named parameter:
+		SELECT c FROM Customer c WHERE c.customerId = :customerId;
+	2.Positional Parameters
+		The input parameters which are prefixed with a question mark (?) followed the numeric position of the parameter in the 
+		query starting from 1 are called as positional parameters. For example, in following JPQL query customerId is mentioned 
+		as a positional parameter:
+		select c FROM Customer c WHERE c.customerId = ?1;
+		
+	1.Equal (=)
+		The following JPQL query fetches details of those customers whose customerId is 1002:
+		SELECT c FROM Customer c WHERE c.customerId = 1002
+
+	2. Not equal (!=)
+		The following JPQL query fetches details of those customers whose city is not Seattle.
+		SELECT c FROM Customer c WHERE c.city != 'Seattle'
+	3. Greater than(>)
+		The following JPQL query fetches details of those customers who are born after 1-Jan-1980.
+		SELECT c FROM Customer c WHERE c.dateOfBirth > '1-Jan-1980'
+	4. Greater or equal then (>=)
+		The following JPQL query fetches details of those customers who are born on or after 1-Jan-1980.
+		SELECT c FROM Customer c WHERE c.dateOfBirth >= '1-Jan-1980'
+	5. Less than (<)
+		The following JPQL query fetches details of those customers who are born before 1-Jan-1980.
+		SELECT c FROM Customer c WHERE c.dateOfBirth < '1-Jan-1980'
+	6. Less than or equal to (<=)
+		The following JPQL query fetches details of those customers who are born on or before after 1-Jan-1980.
+		SELECT c FROM Customer c WHERE c.dateOfBirth <= '1-Jan-1980'
+	7. BETWEEN
+		This operator checks whether the result of an expression is within an inclusive range of values. The following JPQL query fetches details of those customers who are born after 1-Jan-1975 but before 1-Jan-1980.
+		SELECT c FROM Customer c WHERE c.dateOfBirth BETWEEN '1-Jan-1975' AND '1-Jan-1980'
+	8. LIKE
+		The following JPQL query fetches details of those customers whose name starts with R:
+		SELECT c FROM Customer c WHERE c.name LIKE 'R%'
+	9. IS NULL
+		The following JPQL query fetches details of those customers who are not having email id:
+		SELECT c FROM Customer c WHERE c.emailId IS NULL
+		You can negate the operator with NOT to restrict the query results.
+	10. IN
+		The following JPQL query fetches details of those customers whose city is either Seattle or Vancouver:
+		SELECT c FROM Customer c WHERE c.city IN ('Seattle','Vancouver')
+		
+	1. IS EMPTY
+		It restricts the query result to those entities which don’t have any associated entities. The following JPQL query returns those customers which are not having any loans:
+		SELECT c FROM Customer c WHERE c.loans IS EMPTY
+		You can negate this operator (IS NOT EMPTY) to restrict the query result to all customers which are having loans as follows:
+		SELECT c FROM Customer c WHERE c.loans IS NOT EMPTY
+	2. SIZE
+		It restricts the query result on the basis of number of associated entities. The following JPQL query returns those customers which are having more than two loans:
+SELECT c FROM Customer c WHERE SIZE(c.loans) > 2
+//Cardinality
+- defines how many entities exist on each side of the same relationship instance
+	-One – to – One Relationship
+	-One – to – Many Relationship
+	-Many – to – One Relationship
+	-Many – to – Many Relationship
+//One-To-One Relationship
+-annotation specifies that the association relationship has one-to-one multiplicity.
+-@OneToOne(cascade = CascadeType.ALL)
+	-The cascade attribute specifies operations performed on the owner entity that must be transferred or
+		cascaded to the target entity. It takes values of type CascadeType enumeration. The values of this enumeration
+		are PERSIST, REFRESH, REMOVE, MERGE, DETACH, and ALL. The value ALL specifies that all operations performed on
+		Customer will be cascaded to Address. By default, none of the operations will be cascaded.
+	
+-@JoinColumn(name = "address_id", unique = true)
+	-This annotation is used to specify the foreign key column that joins the owner and target entity.
+	-The name attribute specifies the name of the foreign key column in the table mapped to the owner entity.
+	-The unique = true assures that unique values will be stored in the join column.
+		
